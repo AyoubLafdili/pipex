@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 19:16:12 by alafdili          #+#    #+#             */
-/*   Updated: 2024/05/05 14:56:21 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:28:59 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ static char	*read_lines(int fd, char *buffer)
 {
 	int		r_value;
 	char	*read_buffer;
+	char	*tmp;
 
+	tmp = NULL;
 	read_buffer = malloc(((size_t)BUFFER_SIZE + 1) * sizeof(char));
 	if (!read_buffer)
 		return (NULL);
@@ -65,7 +67,9 @@ static char	*read_lines(int fd, char *buffer)
 		else if (r_value == 0)
 			break ;
 		read_buffer[r_value] = '\0';
-		buffer = ft_strjoin(buffer, read_buffer);
+		tmp = ft_strjoin(buffer, read_buffer);
+		free(buffer);
+		buffer = tmp;
 		if (ft_strchr(read_buffer, '\n') != NULL)
 			break ;
 	}

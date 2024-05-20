@@ -1,36 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   get_sec_path_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/12 11:29:43 by alafdili          #+#    #+#             */
-/*   Updated: 2024/05/16 15:31:52 by alafdili         ###   ########.fr       */
+/*   Created: 2024/05/15 14:49:30 by alafdili          #+#    #+#             */
+/*   Updated: 2024/05/16 21:53:08 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pipex_bonus.h"
 
-char	*ft_strjoin(const char *s1, const char *s2)
+char	**get_sec_path(char **env)
 {
-	char	*constr;
-	int		flen;
-	int		slen;
+	char	*tmp;
+	char	**path;
 
-	if (s1 == NULL)
+	tmp = NULL;
+	while (*env)
 	{
-		constr = ft_strdup(s2);
-		if (!constr)
-			return (NULL);
-		return (constr);
+		if (!ft_strncmp(*env, "PATH=", 5))
+		{
+			tmp = *env;
+			break ;
+		}
+		env++;
 	}
-	flen = ft_strlen(s1);
-	slen = ft_strlen(s2);
-	constr = (char *) malloc((flen + slen + 1) * sizeof(char));
-	if (constr == NULL)
-		return (NULL);
-	ft_strlcpy (constr, s1, flen + 1);
-	ft_strlcat (constr, s2, (flen + slen + 1));
-	return (constr);
+	if (tmp)
+	{
+		tmp += 5;
+		path = ft_split(tmp, ':');
+		if (!path)
+			return (NULL);
+		return (path);
+	}
+	return (NULL);
 }
