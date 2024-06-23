@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 14:28:22 by alafdili          #+#    #+#             */
-/*   Updated: 2024/05/18 11:58:32 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/06/23 14:45:49 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <string.h>
 # include <errno.h>
 # include <stdio.h>
+# include <sys/wait.h>
 
 typedef struct s_element
 {
